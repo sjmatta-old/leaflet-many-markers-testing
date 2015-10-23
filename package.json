@@ -22,7 +22,8 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
-    "lodash": "^3.10.1",
+    "Faker": "^0.7.2",
+    "async": "^1.4.2",
     "sanitize-caja": "^0.1.3"
   }
 }
