@@ -1,9 +1,10 @@
-import L from 'imports?L=leaflet!exports?L!leaflet.markercluster';
+import L from 'leaflet';
+import {PruneCluster, PruneClusterForLeaflet} from 'PruneCluster/dist/PruneCluster';
 import faker from 'faker';
 import async from 'async';
+import _ from 'lodash';
 import 'leaflet/dist/leaflet.css';
-import 'leaflet.markercluster/dist/MarkerCluster.css';
-import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import 'PruneCluster/dist/LeafletStyleSheet.css';
 import './main.css';
 
 const map = L.map('map').setView([38.89, -77.09], 4);
@@ -14,30 +15,10 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 L.Icon.Default.imagePath = 'http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/images';
 
-const progress = document.getElementById('progress');
-const progressBar = document.getElementById('progress-bar');
-const updateProgressBar = (processed, total, elapsed) => {
-  if (elapsed > 1000) {
-    progress.style.display = 'block';
-    progressBar.style.width = Math.round(processed / total * 100) + '%';
-  }
-  if (processed === total) {
-    progress.style.display = 'none';
-  }
-};
+const pruneCluster = new PruneClusterForLeaflet();
 
-const markerCluster = L.markerClusterGroup({
-  animateAddingMarkers: true, // this can be disabled if it impacts performance
-  chunkedLoading: true,
-  chunkProgress: updateProgressBar,
+_.times(100000, () => {
+  pruneCluster.RegisterMarker(new PruneCluster.Marker(faker.address.latitude(), faker.address.longitude()));
 });
 
-map.addLayer(markerCluster);
-
-async.times(50000, (n, callback) => {
-  return async.nextTick(() => {
-    callback(null, L.marker([faker.address.latitude(), faker.address.longitude()]));
-  });
-}, (err, markers) => {
-  markerCluster.addLayers(markers);
-});
+map.addLayer(pruneCluster);

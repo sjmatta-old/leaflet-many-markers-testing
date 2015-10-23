@@ -27,7 +27,8 @@
     "PruneCluster": "git+https://github.com/SINTEF-9012/PruneCluster.git",
     "async": "^1.4.2",
     "faker": "^3.0.1",
-    "leaflet.markercluster": "git+https://github.com/Leaflet/Leaflet.markercluster.git",
+    "leaflet": "^0.7.5",
+    "lodash": "^3.10.1",
     "sanitize-caja": "^0.1.3"
   }
 }

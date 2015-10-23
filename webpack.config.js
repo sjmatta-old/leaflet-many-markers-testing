@@ -18,6 +18,7 @@ module.exports = {
       {test: /\.json$/, loader: 'json'},
       {test: /\.(jpe?g|png|gif|svg)$/i, loader: 'file!img'},
       {test: require.resolve('faker/vendor/password-generator.js'), loader: 'imports?this=>window'},
+      {test: require.resolve('PruneCluster/dist/PruneCluster.js'), loader: 'imports?this=>{}!exports?PruneCluster,PruneClusterForLeaflet'},
     ],
   },
   plugins: [
