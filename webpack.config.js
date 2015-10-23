@@ -7,12 +7,17 @@ module.exports = {
     path: __dirname,
     filename: 'bundle.js',
   },
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
+  },
   module: {
     loaders: [
       {test: /\.js$/, loader: 'babel-loader'},
-      {test: /\.css$/, loader: 'style!css' },
-      {test: /\.json$/, loader: 'json' },
-      {test: /\.(jpe?g|png|gif|svg)$/i, loader: 'file!img'}
+      {test: /\.ts$/, loader: 'typescript-loader'},
+      {test: /\.css$/, loader: 'style!css'},
+      {test: /\.json$/, loader: 'json'},
+      {test: /\.(jpe?g|png|gif|svg)$/i, loader: 'file!img'},
+      {test: require.resolve('faker/vendor/password-generator.js'), loader: 'imports?this=>window'},
     ],
   },
   plugins: [
