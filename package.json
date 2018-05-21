@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "PruneCluster": "git+https://github.com/SINTEF-9012/PruneCluster.git",
-    "async": "1.5.2",
+    "async": "2.6.1",
     "faker": "3.1.0",
     "leaflet.markercluster": "git+https://github.com/Leaflet/Leaflet.markercluster.git",
     "sanitize-caja": "0.1.4"
